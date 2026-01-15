@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Dark Mode (Default) */
+    --near-black: 5 5 5;
+    /* #050505 */
+    --dark-gray: 18 18 18;
+    /* #121212 */
+    --subtle-gray: 30 30 30;
+    /* #1E1E1E */
+    --medium-gray: 51 51 51;
+    /* #333333 */
+    --light-gray: 136 136 136;
+    /* #888888 */
+    --lighter-gray: 229 229 229;
+    /* #E5E5E5 */
+    --pure-white: 255 255 255;
+    /* #FFFFFF */
+}
+
+html[data-theme='light'] {
+    /* Light Mode Overrides */
+    --near-black: 255 255 255;
+    /* White */
+    --dark-gray: 244 244 245;
+    /* Zinc-100 */
+    --subtle-gray: 228 228 231;
+    /* Zinc-200 */
+    --medium-gray: 212 212 216;
+    /* Zinc-300 */
+    --light-gray: 82 82 91;
+    /* Zinc-600 */
+    --lighter-gray: 24 24 27;
+    /* Zinc-900 */
+    --pure-white: 9 9 11;
+    /* Zinc-950 */
+}
+
+@layer base {
+    html {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(var(--medium-gray)) rgb(var(--near-black));
+    }
+
+    body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: rgb(var(--near-black));
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: rgb(var(--medium-gray));
+        border-radius: 20px;
+    }
+
+    body {
+        @apply bg-near-black text-lighter-gray font-sans selection:bg-pure-white selection:text-near-black;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
