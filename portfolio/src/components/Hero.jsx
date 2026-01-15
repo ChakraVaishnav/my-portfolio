@@ -40,7 +40,7 @@ const Hero = () => {
                 </motion.div>
 
                 {/* Content */}
-                <div className="relative order-1 md:order-2 flex flex-col justify-center space-y-8 z-20 pt-10 md:pt-0 pl-8 md:pl-24 lg:pl-32">
+                <div className="relative order-1 md:order-2 flex flex-col justify-center space-y-8 z-20 pt-2 md:pt-0 pl-8 md:pl-24 lg:pl-32">
 
                     <button
                         onClick={toggleTheme}
