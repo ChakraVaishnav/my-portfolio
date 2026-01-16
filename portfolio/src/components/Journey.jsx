@@ -153,8 +153,9 @@ const Journey = () => {
                 <>
                     <p><strong className="text-pure-white font-medium">Before serious freelancing, I did two small paid projects.</strong></p>
                     <p>College-level work. Real deadlines. Real responsibility.</p>
-                    <p>Now, I’m working on GreenKrt, a ₹60,000 project, with a team of two. I handle frontend and system-level decisions. Another developer handles backend.</p>
-                    <p>This is where learning meets accountability.</p>
+                    <p><strong className="text-pure-white font-medium">I’m currently working on GreenKrt as part of a small team.</strong></p>
+                    <p>I handle frontend development and system-level decisions, while another developer focuses on the backend.</p>
+                    <p>This phase marks the transition from learning independently to delivering work others depend on.</p>
                 </>
             )
         },
