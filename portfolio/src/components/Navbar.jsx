@@ -6,15 +6,13 @@ const Navbar = () => {
     const location = useLocation();
     const isHome = location.pathname === '/';
 
-
-
     const navLinks = [
         { name: 'Home', mobileName: 'Home', href: '/' },
         { name: 'Work Experience', mobileName: 'Experience', href: isHome ? '#experience' : '/#experience' },
         { name: 'Projects', mobileName: 'Projects', href: isHome ? '#projects' : '/#projects' },
         { name: 'Skills', mobileName: 'Skills', href: isHome ? '#skills' : '/#skills' },
         { name: 'Contact', mobileName: 'Contact', href: isHome ? '#contact' : '/#contact' },
-        { name: 'My journey', mobileName: null, href: isHome ? 'journey' : '/journey' },
+        { name: 'My journey', mobileName: null, href: '/journey' },
     ];
 
     const handleNavClick = (e, link) => {
