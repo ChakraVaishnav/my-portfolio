@@ -9,6 +9,7 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import './index.css';
+import { Analytics } from '@vercel/analytics/react';
 
 import CursorGlow from './components/CursorGlow';
 
@@ -40,6 +41,7 @@ function App() {
             </Box>
           </SmoothScroll>
         </Router>
+        <Analytics />
       </ChakraProvider>
     </ThemeProvider>
   );
