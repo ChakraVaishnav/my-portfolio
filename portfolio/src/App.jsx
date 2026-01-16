@@ -1,5 +1,7 @@
 import { ChakraProvider, Box } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from './context/ThemeContext';
 import SmoothScroll from './components/SmoothScroll';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -8,10 +10,8 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
-import './index.css';
-import { Analytics } from '@vercel/analytics/react';
-
 import CursorGlow from './components/CursorGlow';
+import './index.css';
 
 const Home = () => (
   <>
@@ -23,8 +23,6 @@ const Home = () => (
     <Contact />
   </>
 );
-
-import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   return (
