@@ -152,9 +152,9 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="w-full bg-near-black py-20 px-6">
+        <section id="projects" className="w-full bg-near-black py-12 px-6">
             <div className="max-w-[1400px] mx-auto">
-                <div className="mb-20">
+                <div className="mb-12">
                     <div className="w-full h-px bg-white/10 mb-12"></div>
                     <div className="flex flex-col gap-4">
                         <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-pure-white inline-block border-b-2 border-pure-white pb-2 w-fit uppercase">
