@@ -16,7 +16,10 @@ const Hero = () => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <Box as="section" className="relative min-h-screen w-full flex items-center justify-center bg-near-black overflow-hidden px-6 md:px-12 pt-20">
+        <Box
+            as="section"
+            className="relative min-h-screen w-full flex items-center justify-center bg-near-black overflow-hidden px-6 md:px-12 pt-16 md:pt-24"
+        >
 
             {/* Navbar moved to App.jsx */}
 
@@ -92,15 +95,12 @@ const Hero = () => {
                     </motion.div>
 
                     {/* CTA */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 2.4, duration: 0.8 }}
-                        className="flex gap-6"
-                    >
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.4, duration: 0.8 }} className="flex flex-row gap-2">
                         <a
                             href="#projects"
-                            className="inline-block text-sm text-pure-white border border-pure-white/40 px-6 py-3 tracking-wide hover:border-pure-white hover:bg-pure-white/5 transition-all text-center"
+                            className="inline-block text-xs text-pure-white border border-pure-white/40 px-4 py-2 tracking-wide hover:border-pure-white hover:bg-pure-white/5 transition-all text-center"
+
+
                         >
                             View Projects →
                         </a>

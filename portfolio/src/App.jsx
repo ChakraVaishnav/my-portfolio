@@ -31,7 +31,7 @@ function App() {
         <CursorGlow />
         <Router>
           <SmoothScroll>
-            <Box as="main" className="bg-near-black min-h-screen selection:bg-pure-white selection:text-near-black">
+            <Box as="main" className="bg-near-black min-h-screen selection:bg-pure-white selection:text-near-black w-full overflow-x-hidden relative">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/journey" element={<Journey />} />

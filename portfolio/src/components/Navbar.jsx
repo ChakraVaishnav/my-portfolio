@@ -25,8 +25,8 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 w-full z-50 py-6 flex justify-center bg-near-black/90 backdrop-blur-sm border-b border-pure-white/5">
-            <ul className="flex items-center gap-6 md:gap-12 px-4 flex-wrap justify-center">
+        <nav className="fixed top-0 left-0 w-full z-50 py-6 flex justify-center bg-near-black/90 backdrop-blur-sm border-b border-pure-white/5 overflow-hidden">
+            <ul className="flex items-center gap-3 md:gap-12 px-2 md:px-4 flex-wrap justify-center w-full">
                 {navLinks.map((link) => (
                     <li key={link.name} className={!link.mobileName ? 'hidden md:block' : ''}>
                         {link.href.startsWith('/') && !link.href.includes('#') ? (
