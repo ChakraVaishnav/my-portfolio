@@ -25,7 +25,7 @@ const Chapter = ({ number, title, subtitle, content, index }) => {
 
                 <h3 className={`text-2xl md:text-3xl font-bold tracking-tight transition-colors duration-300 ${isOpen ? 'text-pure-white' : 'text-light-gray'}`}>
                     <span className="border-b border-pure-white/20 pb-1">{title}</span>
-                    <span className="block mt-2 md:mt-0 md:inline md:ml-4 text-lg md:text-xl font-medium text-near-black bg-pure-white px-3 py-1 rounded-sm shadow-sm opacity-100">{subtitle}</span>
+                    <span className="block mt-2 md:mt-0 md:inline md:ml-4 text-lg md:text-xl font-medium text-pure-white px-2 py-1 opacity-100 rounded-sm">{subtitle}</span>
                 </h3>
 
                 <motion.div
@@ -34,7 +34,7 @@ const Chapter = ({ number, title, subtitle, content, index }) => {
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                 >
-                    <div className="pt-4 space-y-6 text-light-gray font-light text-base md:text-lg leading-relaxed max-w-2xl">
+                    <div className="pt-4 space-y-6 text-light-gray font text-base md:text-lg leading-relaxed max-w-2xl [&_p]:transition-colors [&_p]:duration-300 [&_p:hover]:text-pure-white">
                         {content}
                     </div>
                 </motion.div>
