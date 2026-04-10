@@ -33,7 +33,13 @@ const ProjectModal = ({ image, onClose }) => (
 
 const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, navigate }) => {
     return (
-        <div className="group flex flex-col h-full bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/5">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="group flex flex-col h-full bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/5"
+        >
             {/* Image Container */}
             <div
                 className="relative overflow-hidden aspect-video bg-near-black/50 cursor-zoom-in"
@@ -43,8 +49,6 @@ const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, 
                 <img
                     src={image}
                     alt={title}
-                    loading="lazy"
-                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
             </div>
@@ -82,7 +86,7 @@ const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, 
                 {/* Hover gradient bar at bottom */}
                 <div className="mt-4 h-0.5 bg-gradient-to-r from-pure-white/20 to-transparent group-hover:from-pure-white/50 transition-colors" />
             </div>
-        </div>
+        </motion.div>
     );
 
 }
@@ -99,7 +103,7 @@ const Projects = () => {
     const sectionRef = useRef(null);
 
     // Save showAll state to localStorage whenever it changes
-    useEffect(() => {
+    React.useEffect(() => {
         localStorage.setItem('projects_showAll', JSON.stringify(showAll));
     }, [showAll]);
 

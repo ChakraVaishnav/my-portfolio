@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SiGithub, SiNpm, SiNextdotjs, SiPostgresql, SiTailwindcss, SiFramer, SiRedis, SiExpress, SiSupabase } from 'react-icons/si';
-import { FiExternalLink, FiX } from 'react-icons/fi';
+import { FiExternalLink, FiX, FiArrowRight } from 'react-icons/fi';
 
 const ProjectModal = ({ image, onClose }) => (
     <motion.div
@@ -33,7 +33,13 @@ const ProjectModal = ({ image, onClose }) => (
 
 const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, navigate }) => {
     return (
-        <div className="group flex flex-col h-full bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/5">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="group flex flex-col h-full bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/5"
+        >
             {/* Image Container */}
             <div
                 className="relative overflow-hidden aspect-video bg-near-black/50 cursor-zoom-in"
@@ -43,8 +49,6 @@ const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, 
                 <img
                     src={image}
                     alt={title}
-                    loading="lazy"
-                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
             </div>
@@ -68,46 +72,27 @@ const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, 
                     </p>
                 </div>
 
-                {/* View More Link */}
+                {/* View More Button */}
                 <button
-                    onClick={() => {
-                        window.scrollTo(0, 0);
-                        navigate(`/project/${projectId}`);
-                    }}
-                    className="mt-6 text-light-gray text-sm font-light hover:text-pure-white border-b border-light-gray hover:border-pure-white transition-all w-fit"
+                    onClick={() => navigate(`/project/${projectId}`)}
+                    className="mt-6 flex items-center justify-between px-4 py-2 bg-gradient-to-r from-white/10 to-white/5 border border-white/20 text-pure-white text-sm font-semibold hover:border-white/40 hover:from-white/15 hover:to-white/10 transition-all group/btn"
                 >
-                    View More →
+                    <span>View More</span>
+                    <FiArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={16} />
                 </button>
 
                 {/* Hover gradient bar at bottom */}
                 <div className="mt-4 h-0.5 bg-gradient-to-r from-pure-white/20 to-transparent group-hover:from-pure-white/50 transition-colors" />
             </div>
-        </div>
+        </motion.div>
     );
 
 }
 
 const Projects = () => {
     const [selectedImage, setSelectedImage] = useState(null);
-    const [showAll, setShowAll] = useState(() => {
-        // Load showAll state from localStorage on mount
-        const saved = localStorage.getItem('projects_showAll');
-        return saved ? JSON.parse(saved) : false;
-    });
+    const [showAll, setShowAll] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
-    const sectionRef = useRef(null);
-
-    // Save showAll state to localStorage whenever it changes
-    useEffect(() => {
-        localStorage.setItem('projects_showAll', JSON.stringify(showAll));
-    }, [showAll]);
-
-    useEffect(() => {
-        if (location.hash === '#projects') {
-            sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }, [location.hash]);
 
     const allProjects = [
         // TOP 3
@@ -121,7 +106,7 @@ const Projects = () => {
         {
             title: "DeckIQ",
             tag: "AI PRESENTATION TOOL",
-            description: "Create stunning presentations with a single prompt. AI generates content, searches for related images via Google, and applies 20+ themes automatically.",
+            description: "Intelligent presentation builder powered by AI. Create stunning, professional decks in minutes with smart suggestions and design automation.",
             image: "/deckiq/deckiq1.png",
             projectId: "deckiq"
         },
@@ -143,21 +128,21 @@ const Projects = () => {
         {
             title: "RunFX",
             tag: "VS CODE EXTENSION",
-            description: "Play custom sounds when running code in VS Code. Quick command execution from the status bar with auto-completion from your last 10 commands.",
+            description: "VS Code extension for streamlined development workflows. Execute, debug, and manage your code with enhanced capabilities and automation.",
             image: "/runfx/runfx1.png",
             projectId: "runfx"
         },
         {
             title: "TaskNexus",
-            tag: "TASK MANAGEMENT",
-            description: "Individual task management with smart reminders. Get email notifications 6 hours before deadline and when tasks are overdue. Full CRUD operations.",
+            tag: "PROJECT MANAGEMENT",
+            description: "Collaborative task management platform. Organize, track, and manage projects with team members in real-time with seamless integration.",
             image: "/tasknexus/tasknexus1.png",
             projectId: "tasknexus"
         },
         {
             title: "BidBuy",
             tag: "E-AUCTION PLATFORM",
-            description: "Competitive auction marketplace with real-time bidding. Secure transactions, Docker containerized, deployed on AWS for scalability.",
+            description: "Dynamic bidding and auction platform. Buy and sell items through competitive bidding with real-time updates and secure transactions.",
             image: "/bidbuy/bidbuy1.png",
             projectId: "bidbuy"
         }
@@ -167,7 +152,7 @@ const Projects = () => {
     const visibleProjects = showAll ? allProjects : allProjects.slice(0, 3);
 
     return (
-        <section ref={sectionRef} id="projects" className="w-full bg-near-black py-12 md:py-20 px-6">
+        <section id="projects" className="w-full bg-near-black py-12 md:py-20 px-6">
             <div className="max-w-[1400px] mx-auto">
                 {/* Header */}
                 <div className="mb-12 md:mb-20">

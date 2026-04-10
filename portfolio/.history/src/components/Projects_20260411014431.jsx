@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SiGithub, SiNpm, SiNextdotjs, SiPostgresql, SiTailwindcss, SiFramer, SiRedis, SiExpress, SiSupabase } from 'react-icons/si';
-import { FiExternalLink, FiX } from 'react-icons/fi';
+import { FiExternalLink, FiX, FiArrowRight } from 'react-icons/fi';
 
 const ProjectModal = ({ image, onClose }) => (
     <motion.div
@@ -33,7 +33,13 @@ const ProjectModal = ({ image, onClose }) => (
 
 const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, navigate }) => {
     return (
-        <div className="group flex flex-col h-full bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/5">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="group flex flex-col h-full bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/5"
+        >
             {/* Image Container */}
             <div
                 className="relative overflow-hidden aspect-video bg-near-black/50 cursor-zoom-in"
@@ -43,8 +49,6 @@ const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, 
                 <img
                     src={image}
                     alt={title}
-                    loading="lazy"
-                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
             </div>
@@ -82,32 +86,15 @@ const ProjectCard = ({ title, tag, description, image, projectId, onImageClick, 
                 {/* Hover gradient bar at bottom */}
                 <div className="mt-4 h-0.5 bg-gradient-to-r from-pure-white/20 to-transparent group-hover:from-pure-white/50 transition-colors" />
             </div>
-        </div>
+        </motion.div>
     );
 
 }
 
 const Projects = () => {
     const [selectedImage, setSelectedImage] = useState(null);
-    const [showAll, setShowAll] = useState(() => {
-        // Load showAll state from localStorage on mount
-        const saved = localStorage.getItem('projects_showAll');
-        return saved ? JSON.parse(saved) : false;
-    });
+    const [showAll, setShowAll] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
-    const sectionRef = useRef(null);
-
-    // Save showAll state to localStorage whenever it changes
-    useEffect(() => {
-        localStorage.setItem('projects_showAll', JSON.stringify(showAll));
-    }, [showAll]);
-
-    useEffect(() => {
-        if (location.hash === '#projects') {
-            sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }, [location.hash]);
 
     const allProjects = [
         // TOP 3
@@ -167,7 +154,7 @@ const Projects = () => {
     const visibleProjects = showAll ? allProjects : allProjects.slice(0, 3);
 
     return (
-        <section ref={sectionRef} id="projects" className="w-full bg-near-black py-12 md:py-20 px-6">
+        <section id="projects" className="w-full bg-near-black py-12 md:py-20 px-6">
             <div className="max-w-[1400px] mx-auto">
                 {/* Header */}
                 <div className="mb-12 md:mb-20">
